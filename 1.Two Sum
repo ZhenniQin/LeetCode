@@ -1,0 +1,26 @@
+#最初想法，只想一个数与其他不同的位置慢慢相加
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        for i in range(len(nums)):
+            for j in range(len(nums)):
+                if i != j:
+                  if nums[i]+nums[j] == target:
+                     return [i,j]
+
+#改进后的暴力求解，更高效地考虑两两组合
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        for i in range(0,len(nums)):
+            for j in range(i+1,len(nums)):
+                if nums[i]+nums[j] == target:
+                    return [i,j]
+            
+#官方利用枚举与字典
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashtable = dict()
+        for i, num in enumerate(nums):
+            if target-num in hashtable:
+                return [hashtable[target-num],i]
+            hashtable[nums[i]] = i
+        return []
